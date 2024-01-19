@@ -44,17 +44,12 @@ public class Item {
         this.imagen = imagen;
     }
 
-    public Generacion buscaItemPorGeneracion(){
+    public Generacion buscaItemPorGeneracion(Generacion generacion){
 
         return null;
     }
 
-    public boolean creaItem(){
-
-        return false;
-    }
-
-    public Item muestraItem(){
+    public Item muestraItem(Item item){
 
         return null;
     }

@@ -3,7 +3,7 @@ package pokemonguide;
 import java.awt.*;
 import java.util.Arrays;
 
-public class Pokemon {
+public class Pokemon implements Comparable{
 private String nombre;
 private Tipo[] tipo;
 private int numPokedex;
@@ -25,6 +25,7 @@ private int ataqueEspecialMaximo;
 private int defensaEspecialMaximo;
 private int velocidadMoximo;
 private int iv;
+private boolean shiny;
 
     public Pokemon(String nombre, Tipo[] tipo, int numPokedex,
                    String descripcion, Movimiento[] movimientos,
@@ -34,7 +35,7 @@ private int iv;
                    int velocidadBase, int psMaximo, int ataqueMaximo,
                    int defensaMaximo, int ataqueEspecialMaximo,
                    int defensaEspecialMaximo, int velocidadMoximo,
-                   int iv) {
+                   int iv, boolean shiny) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.numPokedex = numPokedex;
@@ -56,6 +57,7 @@ private int iv;
         this.defensaEspecialMaximo = defensaEspecialMaximo;
         this.velocidadMoximo = velocidadMoximo;
         this.iv = iv;
+        this.shiny = shiny;
     }
 
     public String getNombre() {
@@ -222,26 +224,53 @@ private int iv;
         this.iv = iv;
     }
 
-    public Movimiento buscaPokemonPorMovimiento(){
+    public boolean isShiny() {
+        return shiny;
+    }
+
+    public void setShiny(boolean shiny) {
+        this.shiny = shiny;
+    }
+
+    public Movimiento buscaPokemonPorMovimiento(Movimiento movimiento){
 
         return null;
     }
 
-    public Tipo buscaPokemonPorTipo(){
+    public Tipo buscaPokemonPorTipo(Tipo tipo){
 
         return null;
     }
 
-    public String buscaPokemonPorNombre(){
+    public String buscaPokemonPorNombre(String nombre){
 
         return null;
     }
 
-    public  Pokemon muestraPokemon(){
+    public Pokemon muestraPokemon(Pokemon pokemon){
 
         return null;
     }
 
+    public boolean creaTipo(Tipo tipo){
+
+        return false;
+    }
+
+    public Tipo eliminaTipo(Tipo tipo){
+
+        return null;
+    }
+
+    public boolean creaMovimiento(Movimiento movimiento){
+
+        return false;
+    }
+
+    public Movimiento eliminaMovimiento(Movimiento movimiento){
+
+        return null;
+    }
     @Override
     public String toString() {
         return "Pokemon{" +
@@ -267,5 +296,10 @@ private int iv;
                 ", velocidadMoximo=" + velocidadMoximo +
                 ", iv=" + iv +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

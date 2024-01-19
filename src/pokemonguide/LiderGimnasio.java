@@ -47,22 +47,17 @@ public class LiderGimnasio extends Entrenador{
         this.imagen = imagen;
     }
 
-    public Tipo buscaLiderPorTipo(){
+    public Tipo buscaLiderPorTipo(Tipo tipo){
 
         return null;
     }
 
-    public Generacion buscaLiderPorGeneracion(){
+    public Generacion buscaLiderPorGeneracion(Generacion generacion){
 
         return null;
     }
 
-    public boolean creaLider(){
-
-        return false;
-    }
-
-    public LiderGimnasio muestraLider(){
+    public LiderGimnasio muestraLider(LiderGimnasio liderGimnasio){
 
         return null;
     }

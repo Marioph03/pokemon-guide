@@ -37,17 +37,17 @@ public class Entrenador {
         this.generacion = generacion;
     }
 
-    public boolean creaPokemon(){
+    public boolean creaPokemon(Pokemon pokemon){
 
         return false;
     }
 
-    public boolean eliminaPokemon(){
+    public boolean eliminaPokemon(Pokemon pokemon){
 
         return false;
     }
 
-    public Pokemon buscaPokemon(){
+    public Pokemon buscaPokemon(Pokemon pokemon){
 
         return null;
     }

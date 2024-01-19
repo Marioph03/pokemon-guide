@@ -4,11 +4,12 @@ public class Generacion {
     private int numGeneracion;
     private String descripcion;
     private int numPokemonPorGeneracion;
-
-    public Generacion(int numGeneracion, String descripcion, int numPokemonPorGeneracion) {
+    private Entrenador rival;
+    public Generacion(int numGeneracion, String descripcion, int numPokemonPorGeneracion, Entrenador rival) {
         this.numGeneracion = numGeneracion;
         this.descripcion = descripcion;
         this.numPokemonPorGeneracion = numPokemonPorGeneracion;
+        this.rival = rival;
     }
 
     public int getNumGeneracion() {
@@ -29,6 +30,14 @@ public class Generacion {
 
     public void setNumPokemonPorGeneracion(int numPokemonPorGeneracion) {
         this.numPokemonPorGeneracion = numPokemonPorGeneracion;
+    }
+
+    public Entrenador getRival() {
+        return rival;
+    }
+
+    public void setRival(Entrenador rival) {
+        this.rival = rival;
     }
 
     @Override
