@@ -2,12 +2,27 @@ package pokemonguide;
 
 import java.awt.*;
 
+/**
+ * Clase que guarda la informacion de los item
+ * de toda la guia
+ *
+ * @author Mario
+ * @version 1.0
+ */
 public class Item {
     private String nombre;
     private String descripcion;
     private Generacion generacion;
     private Image imagen;
 
+    /**
+     * Constructor de la clase Item
+     *
+     * @param nombre: Nombre del item
+     * @param descripcion: descripcion del item
+     * @param generacion: Generacion a la que pertenece el item
+     * @param imagen: imagen del item
+     */
     public Item(String nombre, String descripcion, Generacion generacion,
                 Image imagen) {
         this.nombre = nombre;
@@ -44,12 +59,28 @@ public class Item {
         this.imagen = imagen;
     }
 
-    public Generacion buscaItemPorGeneracion(Generacion generacion){
+    /**
+     * Metodo que busca un item utilizando como criterio
+     * la generacion a la que pertenece
+     *
+     * @param generacion: Se especifica la generacion a la
+     *                  que pertenece el item que quiero buscar
+     * @return: Devuelve el item que se ha encontrado segun
+     * el criterio que le he especificado como parametro
+     */
+    public Item buscaItemPorGeneracion(Generacion generacion){
 
         return null;
     }
 
-    public Item muestraItem(Item item){
+    /**
+     * Muestra una lista de todos los item que
+     * llevo añadidos a la guia
+     *
+     * @return: Devueleve una lista de todos los
+     * item añadidos a la guia
+     */
+    public Item[] muestraItem(){
 
         return null;
     }

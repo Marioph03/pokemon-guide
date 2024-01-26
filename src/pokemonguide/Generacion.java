@@ -1,15 +1,30 @@
 package pokemonguide;
 
+/**
+ * Clase que guarda informacion de todas las
+ * generaciones incluidas en la guia
+ *
+ * @author Mario
+ * @version 1.0
+ */
 public class Generacion {
     private int numGeneracion;
     private String descripcion;
     private int numPokemonPorGeneracion;
     private Entrenador rival;
-    public Generacion(int numGeneracion, String descripcion, int numPokemonPorGeneracion, Entrenador rival) {
+
+    /**
+     * Constructor de la clase Generacion
+     *
+     * @param numGeneracion: Numero de la generacion Ej. 1 generacion
+     *                     , 2 generacion...
+     * @param descripcion: Descripcion de la generacion
+     * @param numPokemonPorGeneracion: Numero de pokemon que tiene la generacion
+     */
+    public Generacion(int numGeneracion, String descripcion, int numPokemonPorGeneracion) {
         this.numGeneracion = numGeneracion;
         this.descripcion = descripcion;
         this.numPokemonPorGeneracion = numPokemonPorGeneracion;
-        this.rival = rival;
     }
 
     public int getNumGeneracion() {

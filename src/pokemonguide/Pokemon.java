@@ -3,30 +3,66 @@ package pokemonguide;
 import java.awt.*;
 import java.util.Arrays;
 
-public class Pokemon implements Comparable{
-private String nombre;
-private Tipo[] tipo;
-private int numPokedex;
-private String descripcion;
-private Movimiento[] movimientos;
-private Generacion generacion;
-private Image imagen;
-private int nivel;
-private int psBase;
-private int ataqueBase;
-private int defensaBase;
-private int ataqueEspecialBase;
-private int defensaEspecialBase;
-private int velocidadBase;
-private int psMaximo;
-private int ataqueMaximo;
-private int defensaMaximo;
-private int ataqueEspecialMaximo;
-private int defensaEspecialMaximo;
-private int velocidadMoximo;
-private int iv;
-private boolean shiny;
+/**
+ * Clase que muestra informacion de
+ * los pokemon de la guia
+ *
+ * @author Mario
+ * @version 1.0
+ */
+public class Pokemon implements Comparable {
+    private String nombre;
+    private Tipo[] tipos;
+    private int numPokedex;
+    private int numTipos;
+    private int numMovimientos;
+    private String descripcion;
+    private Movimiento[] movimientos;
+    private Generacion generacion;
+    private Image imagen;
+    private int nivel;
+    private int psBase;
+    private int ataqueBase;
+    private int defensaBase;
+    private int ataqueEspecialBase;
+    private int defensaEspecialBase;
+    private int velocidadBase;
+    private int psMaximo;
+    private int ataqueMaximo;
+    private int defensaMaximo;
+    private int ataqueEspecialMaximo;
+    private int defensaEspecialMaximo;
+    private int velocidadMaximo;
+    private int iv;
+    private boolean shiny;
 
+    /**
+     * Constructor de la clase Pokemon
+     *
+     * @param nombre: Nombre del pokemon
+     * @param tipo: Tipo del pokemon Ej. fuego, planta, agua...
+     * @param numPokedex: Numero en el que esta registrado en la pokedex
+     * @param descripcion: Descripcion del pokemon
+     * @param movimientos: Movimientos del pokemon
+     * @param generacion: Generacion a la que pertenece el pokemon
+     * @param imagen: Imagen del pokemon
+     * @param nivel: Nivel que va a tener el pokemon
+     * @param psBase: Estadistica de PS base
+     * @param ataqueBase: Estadistica de ataque base
+     * @param defensaBase: Estadistica de defensa base
+     * @param ataqueEspecialBase: Estadistica de Ataque Especial base
+     * @param defensaEspecialBase: Estadistica de Defensa Especial base
+     * @param velocidadBase: Estadistica de Velocidad base
+     * @param psMaximo: Estadistica de PS maxima
+     * @param ataqueMaximo: Estadistica de ataque maxima
+     * @param defensaMaximo: Estadistica de defensa maxima
+     * @param ataqueEspecialMaximo: Estadistica de Ataque Especial maxima
+     * @param defensaEspecialMaximo: Estadistica de Defensa Especial maxima
+     * @param velocidadMoximo: Estadistica de Velocidad maxima
+     * @param iv: Parametro que indica los iv del pokemon (Cada pokemon tiene una cantidad de iv's en concreto
+     *          en cada estadistica, cada pokemon nace con esa cantidad de iv y no se modifica nunca)
+     * @param shiny: Parametro que indica si el pokemon es variocolor o no
+     */
     public Pokemon(String nombre, Tipo[] tipo, int numPokedex,
                    String descripcion, Movimiento[] movimientos,
                    Generacion generacion, Image imagen, int nivel,
@@ -37,7 +73,7 @@ private boolean shiny;
                    int defensaEspecialMaximo, int velocidadMoximo,
                    int iv, boolean shiny) {
         this.nombre = nombre;
-        this.tipo = tipo;
+        this.tipos = tipo;
         this.numPokedex = numPokedex;
         this.descripcion = descripcion;
         this.movimientos = movimientos;
@@ -55,7 +91,7 @@ private boolean shiny;
         this.defensaMaximo = defensaMaximo;
         this.ataqueEspecialMaximo = ataqueEspecialMaximo;
         this.defensaEspecialMaximo = defensaEspecialMaximo;
-        this.velocidadMoximo = velocidadMoximo;
+        this.velocidadMaximo = velocidadMoximo;
         this.iv = iv;
         this.shiny = shiny;
     }
@@ -68,12 +104,12 @@ private boolean shiny;
         this.nombre = nombre;
     }
 
-    public Tipo[] getTipo() {
-        return tipo;
+    public Tipo[] getTipos() {
+        return tipos;
     }
 
-    public void setTipo(Tipo[] tipo) {
-        this.tipo = tipo;
+    public void setTipos(Tipo[] tipos) {
+        this.tipos = tipos;
     }
 
     public int getNumPokedex() {
@@ -208,12 +244,12 @@ private boolean shiny;
         this.defensaEspecialMaximo = defensaEspecialMaximo;
     }
 
-    public int getVelocidadMoximo() {
-        return velocidadMoximo;
+    public int getVelocidadMaximo() {
+        return velocidadMaximo;
     }
 
-    public void setVelocidadMoximo(int velocidadMoximo) {
-        this.velocidadMoximo = velocidadMoximo;
+    public void setVelocidadMaximo(int velocidadMaximo) {
+        this.velocidadMaximo = velocidadMaximo;
     }
 
     public int getIv() {
@@ -232,50 +268,137 @@ private boolean shiny;
         this.shiny = shiny;
     }
 
-    public Movimiento buscaPokemonPorMovimiento(Movimiento movimiento){
+    /**
+     * Metodo que encuentra un pokemon en concreto en la lista
+     * a partir de un movimiento que se pasa como parametro
+     *
+     * @param movimiento: Parametro en el cual especifico
+     *                    el movimiento por el cual quiero
+     *                    realizar la busqueda un pokemon en la lista
+     * @return: Devuelve el pokemon que buscaba dentro de la lista
+     * a patir del movimiento que le he especificado como parametro
+     */
+    public Pokemon buscaPokemonPorMovimiento(Movimiento movimiento) {
 
         return null;
     }
 
-    public Tipo buscaPokemonPorTipo(Tipo tipo){
+    /**
+     * Metodo que encuentra un pokemon en concreto en la
+     * lista a partir de un tipo que se pasa como parametro
+     *
+     * @param tipo: Parametro en el cual especifico
+     *              el movimiento por el cual quiero
+     *              realizar la busqueda un pokemon en la lista
+     * @return: Devuelve el pokemon que buscaba dentro de la lista
+     * a patir del movimiento que le he especificado como parametro
+     */
+    public Pokemon buscaPokemonPorTipo(Tipo tipo) {
 
         return null;
     }
 
-    public String buscaPokemonPorNombre(String nombre){
+    /**
+     * Metodo por el cual se realiza una busqueda en la lista
+     * atraves del nombre del Pokemon
+     *
+     * @param nombre: Nombre del Pokemon que quiero buscar
+     * @return: Devuelve el pokemon que coincide con el nombre
+     * pasado como parametro
+     */
+    public Pokemon buscaPokemonPorNombre(String nombre) {
 
         return null;
     }
 
-    public Pokemon muestraPokemon(Pokemon pokemon){
+    /**
+     * Metodo que muestra todos los pokemon que llevo
+     * añadidos a la lista
+     *
+     * @return: Devuelve la lista de pokemon que hay en la guia
+     */
+    public Pokemon[] muestraPokemon() {
 
         return null;
     }
 
-    public boolean creaTipo(Tipo tipo){
-
-        return false;
+    /**
+     * Metodo que se utiliza para añadir un tipo a un
+     * pokemon
+     *
+     * @param tipo: Se especifica el tipo que quiero crear
+     * @return: Devuelve true si se ha creado con exito y false
+     * si ha fallado
+     */
+    public boolean creaTipo(Tipo tipo) {
+        //Numero de pokemon que se pueden tener como maximo en el equipo
+        final int NUMERO_TIPOS = 2;
+        //Si el numero de pokemon es menor a 2
+        //se añade un pokemon al array
+        if(numTipos < NUMERO_TIPOS){
+            this.tipos[numTipos-1] = tipo;
+            numTipos++;
+        }
+        return true;
     }
 
-    public Tipo eliminaTipo(Tipo tipo){
+    /**
+     * Metodo que se utiliza para eliminar un tipo del pokemon
+     *
+     * @param tipo: Parametro por el cual especifico el tipo que
+     *            quiero eliminar
+     * @return: Devuelve el tipo que se ha eliminado si la operacion
+     * se ha realizado con exito
+     */
+    public Tipo eliminaTipo(Tipo tipo) {
 
         return null;
     }
 
-    public boolean creaMovimiento(Movimiento movimiento){
-
-        return false;
+    /**
+     * Metodo que se usa para añadir un movimiento al pokemon
+     *
+     * @param movimiento: Parametro que se utiliza para especificar
+     *                  el movimiento que quiero añadir al pokemon
+     * @return: Devuelve true si se ha creado con exito y false si ha
+     * fallado la operacion
+     */
+    public boolean creaMovimiento(Movimiento movimiento) {
+        //Numero de pokemon que se pueden tener como maximo en el equipo
+        final int NUMERO_MOVIMIENTOS_POKEMON = 4;
+        //Si el numero de pokemon es menor a 4
+        //se añade un pokemon al array
+        if(numMovimientos < NUMERO_MOVIMIENTOS_POKEMON){
+            this.movimientos[numMovimientos-1] = movimiento;
+            numMovimientos++;
+        }
+        return true;
     }
 
-    public Movimiento eliminaMovimiento(Movimiento movimiento){
+    /**
+     * Metodo que se utiliza para eliminar un movimiento
+     * de un pokemon
+     *
+     * @param movimiento: Parametro que se utiliza para
+     *                  especificar el movimiento que quiero
+     *                  eliminar
+     * @return: Devuelve el movimiento que se ha eliminado
+     */
+    public Movimiento eliminaMovimiento(Movimiento movimiento) {
 
         return null;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+
     @Override
     public String toString() {
         return "Pokemon{" +
                 "nombre='" + nombre + '\'' +
-                ", tipo=" + Arrays.toString(tipo) +
+                ", tipo=" + Arrays.toString(tipos) +
                 ", numPokedex=" + numPokedex +
                 ", descripcion='" + descripcion + '\'' +
                 ", movimientos=" + Arrays.toString(movimientos) +
@@ -293,13 +416,8 @@ private boolean shiny;
                 ", defensaMaximo=" + defensaMaximo +
                 ", ataqueEspecialMaximo=" + ataqueEspecialMaximo +
                 ", defensaEspecialMaximo=" + defensaEspecialMaximo +
-                ", velocidadMoximo=" + velocidadMoximo +
+                ", velocidadMoximo=" + velocidadMaximo +
                 ", iv=" + iv +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
     }
 }

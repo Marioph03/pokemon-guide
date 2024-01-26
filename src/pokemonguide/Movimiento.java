@@ -1,5 +1,12 @@
 package pokemonguide;
 
+/**
+ * Clase que almacena la informacion de todos
+ * los movimientos incluidos en la guia
+ *
+ * @author Mario
+ * @version 1.0
+ */
 public class Movimiento {
     private String nombre;
     private String descripcion;
@@ -8,6 +15,28 @@ public class Movimiento {
     private int potencia;
     private int precision;
     private String categoria;
+
+    /**
+     * Constructor de la clase Movimiento
+     *
+     * @param nombre: Nombre del movimiento
+     * @param descripcion: Descripcion del movimiento
+     * @param generacion: generacion a la que pertenece el movimiento
+     * @param tipo: Tipo del movimiento
+     * @param potencia: Potencia del movimiento
+     * @param precision: Precision del movimiento
+     * @param categoria: categoria a la que pertenece el movimiento
+     *                 (Hay categoria: Fisica, Especial y de Estado)
+     */
+    public Movimiento(String nombre, String descripcion, Generacion generacion, Tipo tipo, int potencia, int precision, String categoria) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.generacion = generacion;
+        this.tipo = tipo;
+        this.potencia = potencia;
+        this.precision = precision;
+        this.categoria = categoria;
+    }
 
     public String getNombre() {
         return nombre;
