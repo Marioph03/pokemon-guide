@@ -1,21 +1,26 @@
 package pokemonguide;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.*;
+import java.util.Comparator;
 
 
 /**
  * Clase que hereda de la clase Entrenador
  * Guarda la informacion de un tipo de
  * Entrenador en concreto, en este caso
- * se trata de un Lide de Gimnasio
+ * se trata de un Lider de Gimnasio
  *
  * @author Mario
  * @version 1.0
  */
-public final class LiderGimnasio extends Entrenador{
+public final class LiderGimnasio extends Entrenador {
     private String descripcion;
     private Tipo tipo;
     private int nivel;
+    private int numPokemons;
+    private static final int NUMERO_POKEMON_EQUIPO = 6;
     private Image imagen;
 
     /**
@@ -29,15 +34,14 @@ public final class LiderGimnasio extends Entrenador{
      * @param nivel: Nivel del lider de gimnasio
      * @param imagen: Imagen del lider de gimnasio
      */
-    public LiderGimnasio(String nombre, Pokemon[] pokemons, Generacion generacion,
-                         String descripcion, Tipo tipo, int nivel,
-                         Image imagen) {
-        super(nombre, pokemons, generacion, 6);
+    public LiderGimnasio(String nombre, Pokemon[] pokemons, Generacion generacion, String descripcion, Tipo tipo, int nivel, Image imagen) {
+        super(nombre, pokemons, generacion);
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.nivel = nivel;
         this.imagen = imagen;
     }
+
 
     public String getDescripcion() {
         return descripcion;
@@ -108,6 +112,32 @@ public final class LiderGimnasio extends Entrenador{
     }
 
     @Override
+    public boolean creaPokemon(Pokemon pokemon) {
+        //Si el numero de pokemon es menor a 6
+        //se añade un pokemon al array
+        if(pokemon!=null && numPokemons <= NUMERO_POKEMON_EQUIPO){
+            this.getPokemons()[numPokemons] = pokemon;
+            numPokemons++;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean eliminaPokemon(Pokemon pokemon, int i) {
+        //Este metodo copia el array que le paso como parametro
+        //y lo transforma en otro modificado con distintos elementos
+        //apartir de los indices
+        System.arraycopy(this.getPokemons(), i + 1, this.getPokemons() , i, this.getPokemons().length -1 -i);
+        return true;
+    }
+
+    @Override
+    public Pokemon buscaPokemon(Pokemon pokemon) {
+
+        return pokemon;
+    }
+
+    @Override
     public String toString() {
         return "LiderGimnasio{" +
                 "descripcion='" + descripcion + '\'' +
@@ -116,4 +146,6 @@ public final class LiderGimnasio extends Entrenador{
                 ", imagen=" + imagen +
                 '}';
     }
+
+
 }

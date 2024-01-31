@@ -1,5 +1,7 @@
 package pokemonguide;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -335,8 +337,8 @@ public class Pokemon implements Comparable {
         final int NUMERO_TIPOS = 2;
         //Si el numero de pokemon es menor a 2
         //se añade un pokemon al array
-        if(numTipos < NUMERO_TIPOS){
-            this.tipos[numTipos-1] = tipo;
+        if(tipo!=null && numTipos < NUMERO_TIPOS){
+            this.tipos[numTipos] = tipo;
             numTipos++;
         }
         return true;
@@ -345,14 +347,16 @@ public class Pokemon implements Comparable {
     /**
      * Metodo que se utiliza para eliminar un tipo del pokemon
      *
+     * @param i : Parametro en el que se indica el indice del elemento
+     *      que quiero borrar en el array
      * @param tipo: Parametro por el cual especifico el tipo que
      *            quiero eliminar
      * @return: Devuelve el tipo que se ha eliminado si la operacion
      * se ha realizado con exito
      */
-    public Tipo eliminaTipo(Tipo tipo) {
-
-        return null;
+    public boolean eliminaTipo(Tipo tipo, int i) {
+        System.arraycopy(this.tipos, i + 1, tipos , i, tipos.length -1 -i);
+        return true;
     }
 
     /**
@@ -379,18 +383,29 @@ public class Pokemon implements Comparable {
      * Metodo que se utiliza para eliminar un movimiento
      * de un pokemon
      *
+     * @param i : Parametro en el que se indica el indice del elemento
+     *       que quiero borrar en el array
      * @param movimiento: Parametro que se utiliza para
      *                  especificar el movimiento que quiero
      *                  eliminar
      * @return: Devuelve el movimiento que se ha eliminado
      */
-    public Movimiento eliminaMovimiento(Movimiento movimiento) {
-
-        return null;
+    public boolean eliminaMovimiento(Movimiento movimiento, int i) {
+        System.arraycopy(this.movimientos, i + 1, movimientos , i, movimientos.length -1 -i);
+        return true;
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(@NotNull Object o) {
+        if (!(o instanceof Pokemon)){
+            throw new IllegalArgumentException("El parámetro debe ser del tipo Pokemon");
+        }if (this.numPokedex > ((Pokemon) o).numPokedex) {
+                return 1;
+            } else if (this.numPokedex < ((Pokemon) o).numPokedex) {
+                return -1;
+            } else if (this.numPokedex == ((Pokemon) o).numPokedex) {
+                return 0;
+            }
         return 0;
     }
 

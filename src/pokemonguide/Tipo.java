@@ -21,10 +21,6 @@ public class Tipo {
         this.descripcion = descripcion;
     }
 
-    Tipo(){
-
-    }
-
     public String getNombre() {
         return nombre;
     }
