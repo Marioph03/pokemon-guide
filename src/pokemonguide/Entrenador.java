@@ -90,7 +90,7 @@ public abstract class Entrenador{
 
     @Override
     public String toString() {
-        return "Entrenador{" +
+        return "{" +
                 "nombre='" + nombre + '\'' +
                 ", pokemons=" + Arrays.toString(pokemons) +
                 ", generacion=" + generacion +

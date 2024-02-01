@@ -1,5 +1,7 @@
 package pokemonguide;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Clase que guarda informacion de todas las
  * generaciones incluidas en la guia
@@ -7,7 +9,7 @@ package pokemonguide;
  * @author Mario
  * @version 1.0
  */
-public class Generacion {
+public class Generacion implements Comparable{
     private int numGeneracion;
     private String descripcion;
     private int numPokemonPorGeneracion;
@@ -62,5 +64,19 @@ public class Generacion {
                 ", descripcion='" + descripcion + '\'' +
                 ", numPokemonPorGeneracion=" + numPokemonPorGeneracion +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull Object o) {
+        if (!(o instanceof Generacion)){
+            throw new IllegalArgumentException("El parámetro debe ser del tipo Generacion");
+        }if (this.numGeneracion > ((Generacion) o).numGeneracion) {
+            return 1;
+        } else if (this.numGeneracion < ((Generacion) o).numGeneracion) {
+            return -1;
+        } else if (this.numGeneracion == ((Generacion) o).numGeneracion) {
+            return 0;
+        }
+        return 0;
     }
 }

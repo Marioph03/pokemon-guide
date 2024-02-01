@@ -1,7 +1,6 @@
 package pokemonguide;
 
 import java.awt.*;
-import java.util.Arrays;
 
 /**
  * Clase en la que voy a hacer pruebas del programa
@@ -21,18 +20,27 @@ public class PaginaPrincipal {
         Tipo tipo = new Tipo("Fuego", "se caracterizan por ser uno de los" +
                 " más reconocidos en cada región. Sus ataques son controlados precisamente" +
                 " por el elemento fuego con la finalidad de quemar a su adversario.");
-        Entrenador entrenador = new LiderGimnasio("Brock", pokemons, generacion, "Es un lider de gimnasio tipo Roca" +
+        LiderGimnasio brock = new LiderGimnasio("Brock", pokemons, generacion, "Es un lider de gimnasio tipo Roca" +
                 " de la primera generacion", tipo, 14, imagen);
-        Pokemon pokemon = new Pokemon("Charmander", tipos, 4, "Prefiere las cosas calientes. Dicen que cuando " +
+        Pokemon charmander = new Pokemon("Charmander", tipos, 4, "Prefiere las cosas calientes. Dicen que cuando " +
                 "llueve le sale vapor de la punta de la cola.", movimientos, generacion, imagen, 5, 39, 52,
                 43, 60, 50, 65, 282, 223, 203,
                 240, 218, 251, 31, false);
+
+        Pokemon geodude = new Pokemon("Geodude", tipos, 74, "Cuanto más larga es la vida de Geodude, mayor es" +
+                " el desgaste y la erosión que sufre, y más redondeada la forma que va adquiriendo. Sin embargo, el corazón" +
+                " permanece siempre duro, rocoso y tosco.", movimientos, generacion, imagen, 5, 40, 80, 100,
+                30, 30, 20, 221, 196, 236, 96
+        , 96, 76, 31, false);
+
         Movimiento movimiento = new Movimiento("Ascuas", "Lanza unas pequeñas chispas de fuego que causa daño al adversario",
                 generacion, tipo, 40, 100, "Especial");
-        System.out.println(entrenador.creaPokemon(pokemon));
-        System.out.println(entrenador);
-        System.out.println(entrenador.eliminaPokemon(pokemon, 0));
-        System.out.println(entrenador);
+
+        //System.out.println(brock.creaPokemon(charmander));
+        //System.out.println(brock.creaPokemon(geodude));
+        //System.out.println(brock);
+        System.out.println(brock.buscaLiderPorGeneracion(generacion, brock));
+        //System.out.println(brock.eliminaPokemon(charmander, 0));
+        //System.out.println(brock);
     }
 }
-

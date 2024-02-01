@@ -1,5 +1,7 @@
 package pokemonguide;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Clase que almacena la informacion de todos
  * los movimientos incluidos en la guia
@@ -7,7 +9,7 @@ package pokemonguide;
  * @author Mario
  * @version 1.0
  */
-public class Movimiento {
+public class Movimiento implements Comparable{
     private String nombre;
     private String descripcion;
     private Generacion generacion;
@@ -101,5 +103,13 @@ public class Movimiento {
                 ", precision=" + precision +
                 ", categoria='" + categoria + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull Object o) {
+        if (!(o instanceof Movimiento mov)) {
+            throw new IllegalArgumentException("El parámetro debe ser del tipo Movimiento");
+        }
+        return this.nombre.compareTo(mov.nombre);
     }
 }

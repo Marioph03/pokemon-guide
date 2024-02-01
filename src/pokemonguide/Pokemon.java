@@ -37,6 +37,7 @@ public class Pokemon implements Comparable {
     private int velocidadMaximo;
     private int iv;
     private boolean shiny;
+    private Habilidad habilidad;
 
     /**
      * Constructor de la clase Pokemon
@@ -280,8 +281,17 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el pokemon que buscaba dentro de la lista
      * a patir del movimiento que le he especificado como parametro
      */
-    public Pokemon buscaPokemonPorMovimiento(Movimiento movimiento) {
-
+    public Pokemon buscaPokemonPorMovimiento(Movimiento movimiento, Pokemon pokemon) {
+        //Con este for recorro el array de movimientos
+        for (int i = 0; i < this.movimientos.length; i++) {
+            //En esta condicion digo que mientras el movimiento
+            //a comparar es igual que el comparado devuelva
+            //el movimiento que el usuario quiera buscar en el
+            //equipo
+            if (movimiento.compareTo(this.movimientos[i])==0){
+                return pokemon;
+            }
+        }
         return null;
     }
 
@@ -295,8 +305,17 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el pokemon que buscaba dentro de la lista
      * a patir del movimiento que le he especificado como parametro
      */
-    public Pokemon buscaPokemonPorTipo(Tipo tipo) {
-
+    public Pokemon buscaPokemonPorTipo(Tipo tipo, Pokemon pokemon) {
+        //Con este for recorro el array de movimientos
+        for (int i = 0; i < this.tipos.length; i++) {
+            //En esta condicion digo que mientras el movimiento
+            //a comparar es igual que el comparado devuelva
+            //el movimiento que el usuario quiera buscar en el
+            //equipo
+            if (tipo.compareTo(this.tipos[i])==0){
+                return pokemon;
+            }
+        }
         return null;
     }
 
@@ -308,8 +327,10 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el pokemon que coincide con el nombre
      * pasado como parametro
      */
-    public Pokemon buscaPokemonPorNombre(String nombre) {
-
+    public Pokemon buscaPokemonPorNombre(String nombre, Pokemon pokemon) {
+        if (nombre.compareTo(this.nombre) == 0){
+            return pokemon;
+        }
         return null;
     }
 

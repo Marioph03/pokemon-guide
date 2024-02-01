@@ -79,8 +79,10 @@ public final class LiderGimnasio extends Entrenador {
      *            por el cual quiero buscar al Lider de Gimnasio
      * @return: Devuelve el Lider de Gimnasio encontrado
      */
-    public LiderGimnasio buscaLiderPorTipo(Tipo tipo){
-
+    public LiderGimnasio buscaLiderPorTipo(Tipo tipo, LiderGimnasio lider){
+        if (tipo.compareTo(this.tipo) == 0){
+            return lider;
+        }
         return null;
     }
 
@@ -94,8 +96,10 @@ public final class LiderGimnasio extends Entrenador {
      * @return: Devuelve el Lider de Gimnasio encontrado atraves del
      * criterio de busqueda especificado en el parametro del metodo
      */
-    public LiderGimnasio buscaLiderPorGeneracion(Generacion generacion){
-
+    public LiderGimnasio buscaLiderPorGeneracion(Generacion generacion, LiderGimnasio lider){
+        if (generacion.compareTo(super.getGeneracion()) == 0){
+            return lider;
+        }
         return null;
     }
 
@@ -133,8 +137,17 @@ public final class LiderGimnasio extends Entrenador {
 
     @Override
     public Pokemon buscaPokemon(Pokemon pokemon) {
-
-        return pokemon;
+        //Con este for recorro el array de pokemon
+        for (int i = 0; i < this.getPokemons().length; i++) {
+            //En esta condicion digo que mientras el pokemon
+            //a comparar es igual que el comparado devuelva
+            //el pokemon que el usuario quiera buscar en el
+            //equipo
+            if (pokemon.compareTo(this.getPokemons()[i])==0){
+            return this.getPokemons()[i];
+            }
+        }
+        return null;
     }
 
     @Override
@@ -143,9 +156,9 @@ public final class LiderGimnasio extends Entrenador {
                 "descripcion='" + descripcion + '\'' +
                 ", tipo=" + tipo +
                 ", nivel=" + nivel +
+                ", numPokemons=" + numPokemons +
                 ", imagen=" + imagen +
+                super.toString() +
                 '}';
     }
-
-
 }

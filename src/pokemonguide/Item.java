@@ -68,8 +68,10 @@ public class Item {
      * @return: Devuelve el item que se ha encontrado segun
      * el criterio que le he especificado como parametro
      */
-    public Item buscaItemPorGeneracion(Generacion generacion){
-
+    public Item buscaItemPorGeneracion(Generacion generacion, Item item){
+        if (generacion.compareTo(this.generacion) == 0){
+            return item;
+        }
         return null;
     }
 
