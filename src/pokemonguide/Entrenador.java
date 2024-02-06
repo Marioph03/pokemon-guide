@@ -1,8 +1,5 @@
 package pokemonguide;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -82,11 +79,12 @@ public abstract class Entrenador{
     /**
      * Metodo para buscar un pokemon en el
      * equipo del entrenador
+     *
      * @param pokemon: Parametro que se utiliza para especificar
-     *               el pokemon que quiero buscar
+     *                 el pokemon que quiero buscar
      * @return: Devuelve el pokemon que se ha encontrado dentro de la lista
      */
-    public abstract Pokemon buscaPokemon(Pokemon pokemon);
+    public abstract int buscaPokemon(Pokemon pokemon);
 
     @Override
     public String toString() {

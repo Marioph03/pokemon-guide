@@ -38,6 +38,7 @@ public class Pokemon implements Comparable {
     private int iv;
     private boolean shiny;
     private Habilidad habilidad;
+    private Naturaleza naturaleza;
 
     /**
      * Constructor de la clase Pokemon
@@ -65,6 +66,8 @@ public class Pokemon implements Comparable {
      * @param iv: Parametro que indica los iv del pokemon (Cada pokemon tiene una cantidad de iv's en concreto
      *          en cada estadistica, cada pokemon nace con esa cantidad de iv y no se modifica nunca)
      * @param shiny: Parametro que indica si el pokemon es variocolor o no
+     * @param habilidad: Parametro que muestra la habilidad del pokemon
+     * @param naturaleza: Parametro que muestra la naturaleza del pokemon
      */
     public Pokemon(String nombre, Tipo[] tipo, int numPokedex,
                    String descripcion, Movimiento[] movimientos,
@@ -74,7 +77,8 @@ public class Pokemon implements Comparable {
                    int velocidadBase, int psMaximo, int ataqueMaximo,
                    int defensaMaximo, int ataqueEspecialMaximo,
                    int defensaEspecialMaximo, int velocidadMoximo,
-                   int iv, boolean shiny) {
+                   int iv, boolean shiny, Habilidad habilidad
+            , Naturaleza naturaleza) {
         this.nombre = nombre;
         this.tipos = tipo;
         this.numPokedex = numPokedex;
@@ -97,6 +101,8 @@ public class Pokemon implements Comparable {
         this.velocidadMaximo = velocidadMoximo;
         this.iv = iv;
         this.shiny = shiny;
+        this.habilidad = habilidad;
+        this.naturaleza = naturaleza;
     }
 
     public String getNombre() {
@@ -271,6 +277,22 @@ public class Pokemon implements Comparable {
         this.shiny = shiny;
     }
 
+    public Habilidad getHabilidad() {
+        return habilidad;
+    }
+
+    public void setHabilidad(Habilidad habilidad) {
+        this.habilidad = habilidad;
+    }
+
+    public Naturaleza getNaturaleza() {
+        return naturaleza;
+    }
+
+    public void setNaturaleza(Naturaleza naturaleza) {
+        this.naturaleza = naturaleza;
+    }
+
     /**
      * Metodo que encuentra un pokemon en concreto en la lista
      * a partir de un movimiento que se pasa como parametro
@@ -281,15 +303,15 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el pokemon que buscaba dentro de la lista
      * a patir del movimiento que le he especificado como parametro
      */
-    public Pokemon buscaPokemonPorMovimiento(Movimiento movimiento, Pokemon pokemon) {
+    public Pokemon buscaPokemonPorMovimiento(Movimiento movimiento) {
         //Con este for recorro el array de movimientos
         for (int i = 0; i < this.movimientos.length; i++) {
             //En esta condicion digo que mientras el movimiento
             //a comparar es igual que el comparado devuelva
             //el movimiento que el usuario quiera buscar en el
             //equipo
-            if (movimiento.compareTo(this.movimientos[i])==0){
-                return pokemon;
+            if (movimiento!=null && movimiento.compareTo(this.movimientos[i])==0){
+                return this;
             }
         }
         return null;
@@ -305,15 +327,15 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el pokemon que buscaba dentro de la lista
      * a patir del movimiento que le he especificado como parametro
      */
-    public Pokemon buscaPokemonPorTipo(Tipo tipo, Pokemon pokemon) {
+    public Pokemon buscaPokemonPorTipo(Tipo tipo) {
         //Con este for recorro el array de movimientos
         for (int i = 0; i < this.tipos.length; i++) {
             //En esta condicion digo que mientras el movimiento
             //a comparar es igual que el comparado devuelva
             //el movimiento que el usuario quiera buscar en el
             //equipo
-            if (tipo.compareTo(this.tipos[i])==0){
-                return pokemon;
+            if (tipo!=null && tipo.compareTo(this.tipos[i])==0){
+                return this;
             }
         }
         return null;
@@ -327,9 +349,9 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el pokemon que coincide con el nombre
      * pasado como parametro
      */
-    public Pokemon buscaPokemonPorNombre(String nombre, Pokemon pokemon) {
-        if (nombre.compareTo(this.nombre) == 0){
-            return pokemon;
+    public Pokemon buscaPokemonPorNombre(String nombre) {
+        if (nombre!=null && nombre.compareTo(this.nombre) == 0){
+            return this;
         }
         return null;
     }
@@ -376,7 +398,11 @@ public class Pokemon implements Comparable {
      * se ha realizado con exito
      */
     public boolean eliminaTipo(Tipo tipo, int i) {
-        System.arraycopy(this.tipos, i + 1, tipos , i, tipos.length -1 -i);
+        for (i=0; i < this.tipos.length; i++) {
+            if (tipo.compareTo(this.tipos[i])==0){
+                System.arraycopy(this.tipos, i + 1, tipos , i, tipos.length -1 -i);
+            }
+        }
         return true;
     }
 
@@ -393,7 +419,7 @@ public class Pokemon implements Comparable {
         final int NUMERO_MOVIMIENTOS_POKEMON = 4;
         //Si el numero de pokemon es menor a 4
         //se añade un pokemon al array
-        if(numMovimientos < NUMERO_MOVIMIENTOS_POKEMON){
+        if(movimiento!=null && numMovimientos < NUMERO_MOVIMIENTOS_POKEMON){
             this.movimientos[numMovimientos-1] = movimiento;
             numMovimientos++;
         }
@@ -412,7 +438,11 @@ public class Pokemon implements Comparable {
      * @return: Devuelve el movimiento que se ha eliminado
      */
     public boolean eliminaMovimiento(Movimiento movimiento, int i) {
-        System.arraycopy(this.movimientos, i + 1, movimientos , i, movimientos.length -1 -i);
+        for (i=0; i < this.movimientos.length; i++) {
+            if (movimiento.compareTo(this.movimientos[i])==0){
+                System.arraycopy(this.movimientos, i + 1, movimientos , i, movimientos.length -1 -i);
+            }
+        }
         return true;
     }
 
@@ -421,21 +451,22 @@ public class Pokemon implements Comparable {
         if (!(o instanceof Pokemon)){
             throw new IllegalArgumentException("El parámetro debe ser del tipo Pokemon");
         }if (this.numPokedex > ((Pokemon) o).numPokedex) {
-                return 1;
-            } else if (this.numPokedex < ((Pokemon) o).numPokedex) {
-                return -1;
-            } else if (this.numPokedex == ((Pokemon) o).numPokedex) {
-                return 0;
-            }
+            return 1;
+        } else if (this.numPokedex < ((Pokemon) o).numPokedex) {
+            return -1;
+        } else if (this.numPokedex == ((Pokemon) o).numPokedex) {
+            return 0;
+        }
         return 0;
     }
-
     @Override
     public String toString() {
         return "Pokemon{" +
                 "nombre='" + nombre + '\'' +
-                ", tipo=" + Arrays.toString(tipos) +
+                ", tipos=" + Arrays.toString(tipos) +
                 ", numPokedex=" + numPokedex +
+                ", numTipos=" + numTipos +
+                ", numMovimientos=" + numMovimientos +
                 ", descripcion='" + descripcion + '\'' +
                 ", movimientos=" + Arrays.toString(movimientos) +
                 ", generacion=" + generacion +
@@ -452,8 +483,13 @@ public class Pokemon implements Comparable {
                 ", defensaMaximo=" + defensaMaximo +
                 ", ataqueEspecialMaximo=" + ataqueEspecialMaximo +
                 ", defensaEspecialMaximo=" + defensaEspecialMaximo +
-                ", velocidadMoximo=" + velocidadMaximo +
+                ", velocidadMaximo=" + velocidadMaximo +
                 ", iv=" + iv +
+                ", shiny=" + shiny +
+                ", habilidad=" + habilidad +
+                ", naturaleza=" + naturaleza +
                 '}';
     }
 }
+
+

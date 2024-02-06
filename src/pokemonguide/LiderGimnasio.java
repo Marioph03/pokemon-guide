@@ -3,7 +3,6 @@ package pokemonguide;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.util.Comparator;
 
 
 /**
@@ -79,9 +78,9 @@ public final class LiderGimnasio extends Entrenador {
      *            por el cual quiero buscar al Lider de Gimnasio
      * @return: Devuelve el Lider de Gimnasio encontrado
      */
-    public LiderGimnasio buscaLiderPorTipo(Tipo tipo, LiderGimnasio lider){
-        if (tipo.compareTo(this.tipo) == 0){
-            return lider;
+    public LiderGimnasio buscaLiderPorTipo(Tipo tipo){
+        if (tipo!=null && tipo.compareTo(this.tipo) == 0){
+            return this;
         }
         return null;
     }
@@ -96,9 +95,9 @@ public final class LiderGimnasio extends Entrenador {
      * @return: Devuelve el Lider de Gimnasio encontrado atraves del
      * criterio de busqueda especificado en el parametro del metodo
      */
-    public LiderGimnasio buscaLiderPorGeneracion(Generacion generacion, LiderGimnasio lider){
-        if (generacion.compareTo(super.getGeneracion()) == 0){
-            return lider;
+    public LiderGimnasio buscaLiderPorGeneracion(Generacion generacion){
+        if (generacion!=null && generacion.compareTo(super.getGeneracion()) == 0){
+            return this;
         }
         return null;
     }
@@ -127,27 +126,29 @@ public final class LiderGimnasio extends Entrenador {
     }
 
     @Override
-    public boolean eliminaPokemon(Pokemon pokemon, int i) {
+    public boolean eliminaPokemon(@NotNull Pokemon pokemon, int i) {
         //Este metodo copia el array que le paso como parametro
         //y lo transforma en otro modificado con distintos elementos
         //apartir de los indices
-        System.arraycopy(this.getPokemons(), i + 1, this.getPokemons() , i, this.getPokemons().length -1 -i);
+        if (buscaPokemon(pokemon)==i) {
+            System.arraycopy(this.getPokemons(), i + 1, this.getPokemons(), i, this.getPokemons().length - 1 - i);
+        }
         return true;
     }
 
     @Override
-    public Pokemon buscaPokemon(Pokemon pokemon) {
+    public int buscaPokemon(@NotNull Pokemon pokemon) {
         //Con este for recorro el array de pokemon
         for (int i = 0; i < this.getPokemons().length; i++) {
             //En esta condicion digo que mientras el pokemon
             //a comparar es igual que el comparado devuelva
             //el pokemon que el usuario quiera buscar en el
             //equipo
-            if (pokemon.compareTo(this.getPokemons()[i])==0){
-            return this.getPokemons()[i];
+            if (pokemon!=null && pokemon.compareTo(this.getPokemons()[i])==0){
+            return i;
             }
         }
-        return null;
+        return -1;
     }
 
     @Override
