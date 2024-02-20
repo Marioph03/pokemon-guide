@@ -1,4 +1,4 @@
-package pokemonguide;
+package logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;

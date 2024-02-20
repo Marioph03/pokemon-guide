@@ -1,5 +1,6 @@
 package pokemonguide;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ import java.util.Objects;
 public abstract class Entrenador{
     private String nombre;
     private Pokemon[] pokemons;
+    private ArrayList<Pokemon> listaPokemons;
     private Generacion generacion;
 
 
@@ -23,10 +25,11 @@ public abstract class Entrenador{
      * @param pokemons   : Equipo Pokemon del entrenador
      * @param generacion : Generacion a la que pertenece el entrenador
      */
-    public Entrenador(String nombre, Pokemon[] pokemons, Generacion generacion) {
+    public Entrenador(String nombre, Pokemon[] pokemons, Generacion generacion, ArrayList<Pokemon> listaPokemons) {
         this.nombre = nombre;
         this.pokemons = pokemons;
         this.generacion = generacion;
+        this.listaPokemons = listaPokemons;
     }
 
     public String getNombre() {
@@ -51,6 +54,14 @@ public abstract class Entrenador{
 
     public void setGeneracion(Generacion generacion) {
         this.generacion = generacion;
+    }
+
+    public ArrayList<Pokemon> getListaPokemons() {
+        return listaPokemons;
+    }
+
+    public void setListaPokemons(ArrayList<Pokemon> listaPokemons) {
+        this.listaPokemons = listaPokemons;
     }
 
     /**
@@ -88,9 +99,10 @@ public abstract class Entrenador{
 
     @Override
     public String toString() {
-        return "{" +
+        return "Entrenador{" +
                 "nombre='" + nombre + '\'' +
                 ", pokemons=" + Arrays.toString(pokemons) +
+                ", listaPokemons=" + listaPokemons +
                 ", generacion=" + generacion +
                 '}';
     }

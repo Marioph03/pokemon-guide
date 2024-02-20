@@ -1,4 +1,4 @@
-package pokemonguide;
+package logger;
 
 import java.util.logging.Formatter;
 import java.util.logging.LogManager;

@@ -1,8 +1,9 @@
 package pokemonguide;
 
+import logger.MyLogger;
+
 import java.awt.*;
-import java.util.logging.Formatter;
-import java.util.logging.LogRecord;
+import java.util.ArrayList;
 
 /**
  * Clase en la que voy a hacer pruebas del programa
@@ -17,6 +18,9 @@ public class PaginaPrincipal {
         Tipo[] tipos = new Tipo[2];
         Pokemon[] pokemons = new Pokemon[6];
         Movimiento[] movimientos = new Movimiento[4];
+        ArrayList<Pokemon> pokemonsList = new ArrayList<>();
+        ArrayList<Tipo> tiposList = new ArrayList<>();
+        ArrayList<Movimiento> movimientosList = new ArrayList<>();
 
         Naturaleza naturaleza = new Naturaleza("Huraña", "sube ataque y baja defensa");
         Naturaleza naturaleza2 = new Naturaleza("Activa", "sube velocidad y baja defensa");
@@ -30,24 +34,26 @@ public class PaginaPrincipal {
         Habilidad habilidad = new Habilidad("Mar llamas", "Es una habilidad que suelen tener los pokemon de tipo fuego, " +
                 "mientras menos ps tenga el pokemon mas le aumenta el ataque", tipo);
 
-        LiderGimnasio brock = new LiderGimnasio("Brock", pokemons, generacion, "Es un lider de gimnasio tipo Roca" +
+        LiderGimnasio brock = new LiderGimnasio("Brock", pokemons, generacion, pokemonsList,"Es un lider de gimnasio tipo Roca" +
                 " de la primera generacion", tipo, 14, imagen);
+
         Pokemon charmander = new Pokemon("Charmander", tipos, 4, "Prefiere las cosas calientes. Dicen que cuando " +
                 "llueve le sale vapor de la punta de la cola.", movimientos, generacion, imagen, 5, 39, 52,
                 43, 60, 50, 65, 282, 223, 203,
-                240, 218, 251, 31, false, habilidad, naturaleza);
+                240, 218, 251, 31, false, habilidad, naturaleza, tiposList,
+                movimientosList);
 
         Pokemon geodude = new Pokemon("Geodude", tipos, 74, "Cuanto más larga es la vida de Geodude, mayor es" +
                 " el desgaste y la erosión que sufre, y más redondeada la forma que va adquiriendo. Sin embargo, el corazón" +
                 " permanece siempre duro, rocoso y tosco.", movimientos, generacion, imagen, 5, 40, 80, 100,
                 30, 30, 20, 221, 196, 236, 96
-        , 96, 76, 31, false, habilidad, naturaleza);
+        , 96, 76, 31, false, habilidad, naturaleza, tiposList, movimientosList);
 
         Pokemon geodude2 = new Pokemon("Geodude", tipos, 74, "Cuanto más larga es la vida de Geodude, mayor es" +
                 " el desgaste y la erosión que sufre, y más redondeada la forma que va adquiriendo. Sin embargo, el corazón" +
                 " permanece siempre duro, rocoso y tosco.", movimientos, generacion, imagen, 5, 40, 80, 100,
                 30, 30, 20, 221, 196, 236, 96
-                , 96, 76, 31, true, habilidad, naturaleza2);
+                , 96, 76, 31, true, habilidad, naturaleza2, tiposList, movimientosList);
 
         Movimiento movimiento = new Movimiento("Ascuas", "Lanza unas pequeñas chispas de fuego que causa daño al adversario",
                 generacion, tipo, 40, 100, "Especial");

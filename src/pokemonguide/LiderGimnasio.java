@@ -3,6 +3,7 @@ package pokemonguide;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 
 /**
@@ -32,15 +33,17 @@ public final class LiderGimnasio extends Entrenador {
      * @param tipo: Tipo en el que se especifica el Lider de Gimnasio
      * @param nivel: Nivel del lider de gimnasio
      * @param imagen: Imagen del lider de gimnasio
+     * @param listaPokemons: Parametro en el que se guarda una lista de pokemon del Entrenador/Lider de gimnasio
      */
-    public LiderGimnasio(String nombre, Pokemon[] pokemons, Generacion generacion, String descripcion, Tipo tipo, int nivel, Image imagen) {
-        super(nombre, pokemons, generacion);
+
+    public LiderGimnasio(String nombre, Pokemon[] pokemons, Generacion generacion, ArrayList<Pokemon> listaPokemons,
+                         String descripcion, Tipo tipo, int nivel, Image imagen) {
+        super(nombre, pokemons, generacion, listaPokemons);
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.nivel = nivel;
         this.imagen = imagen;
     }
-
 
     public String getDescripcion() {
         return descripcion;

@@ -3,6 +3,7 @@ package pokemonguide;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -15,11 +16,13 @@ import java.util.Arrays;
 public class Pokemon implements Comparable {
     private String nombre;
     private Tipo[] tipos;
+    private ArrayList<Tipo> listaTipos;
     private int numPokedex;
     private int numTipos;
     private int numMovimientos;
     private String descripcion;
     private Movimiento[] movimientos;
+    private ArrayList<Movimiento> listaMovimientos;
     private Generacion generacion;
     private Image imagen;
     private int nivel;
@@ -68,6 +71,8 @@ public class Pokemon implements Comparable {
      * @param shiny: Parametro que indica si el pokemon es variocolor o no
      * @param habilidad: Parametro que muestra la habilidad del pokemon
      * @param naturaleza: Parametro que muestra la naturaleza del pokemon
+     * @param listaTipos: Parametro en el que guardo una lista de tipos en sustitucion del array
+     * @param listaMovimientos: Parametro en el que guardo una lista de tipos en sustitucion del array
      */
     public Pokemon(String nombre, Tipo[] tipo, int numPokedex,
                    String descripcion, Movimiento[] movimientos,
@@ -78,7 +83,8 @@ public class Pokemon implements Comparable {
                    int defensaMaximo, int ataqueEspecialMaximo,
                    int defensaEspecialMaximo, int velocidadMoximo,
                    int iv, boolean shiny, Habilidad habilidad
-            , Naturaleza naturaleza) {
+            , Naturaleza naturaleza, ArrayList<Tipo> listaTipos,
+                   ArrayList<Movimiento> listaMovimientos) {
         this.nombre = nombre;
         this.tipos = tipo;
         this.numPokedex = numPokedex;
@@ -103,6 +109,8 @@ public class Pokemon implements Comparable {
         this.shiny = shiny;
         this.habilidad = habilidad;
         this.naturaleza = naturaleza;
+        this.listaTipos = listaTipos;
+        this.listaMovimientos = listaMovimientos;
     }
 
     public String getNombre() {
@@ -291,6 +299,22 @@ public class Pokemon implements Comparable {
 
     public void setNaturaleza(Naturaleza naturaleza) {
         this.naturaleza = naturaleza;
+    }
+
+    public ArrayList<Tipo> getListaTipos() {
+        return listaTipos;
+    }
+
+    public void setListaTipos(ArrayList<Tipo> listaTipos) {
+        this.listaTipos = listaTipos;
+    }
+
+    public ArrayList<Movimiento> getListaMovimientos() {
+        return listaMovimientos;
+    }
+
+    public void setListaMovimientos(ArrayList<Movimiento> listaMovimientos) {
+        this.listaMovimientos = listaMovimientos;
     }
 
     /**
