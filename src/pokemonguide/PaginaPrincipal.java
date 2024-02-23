@@ -62,8 +62,10 @@ public class PaginaPrincipal {
         //System.out.println(brock.creaPokemon(geodude));
         //System.out.println(brock.creaPokemon(geodude2));
         //System.out.println(brock);
-        System.out.println(brock.buscaLiderPorGeneracion(generacion));
+        //System.out.println(brock.buscaLiderPorGeneracion(generacion));
         //System.out.println(brock.eliminaPokemon(geodude, 0));
         //System.out.println(brock);
+        System.out.println(geodude.subir(geodude.getAtaqueMaximo()));
+        System.out.println(geodude.bajar(geodude.getDefensaMaximo()));
     }
 }
