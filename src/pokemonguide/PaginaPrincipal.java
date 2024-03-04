@@ -1,6 +1,7 @@
 package pokemonguide;
 
 import logger.MyLogger;
+import validacion.ValidacionCampoClave;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class PaginaPrincipal {
         //System.out.println(brock.buscaLiderPorGeneracion(generacion));
         //System.out.println(brock.eliminaPokemon(geodude, 0));
         //System.out.println(brock);
-        System.out.println(geodude.subir(geodude.getAtaqueMaximo()));
-        System.out.println(geodude.bajar(geodude.getDefensaMaximo()));
+        //System.out.println(geodude.manejaEstadisticaSegunNaturaleza(naturaleza));
+        System.out.println(ValidacionCampoClave.validaCampoClave(geodude.getNumPokedex(), "([0-9]|[0-9][0-9])|([1][0-4][0-9])|(150|151)"));
     }
 }

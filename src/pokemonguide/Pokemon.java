@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Clase que muestra informacion de
@@ -13,7 +15,7 @@ import java.util.Arrays;
  * @author Mario
  * @version 1.0
  */
-public class Pokemon implements Comparable, StadisticInterface {
+public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon> {
     private String nombre;
     private Tipo[] tipos;
     private ArrayList<Tipo> listaTipos;
@@ -394,7 +396,7 @@ public class Pokemon implements Comparable, StadisticInterface {
         //Si el numero de pokemon es menor a 2
         //se añade un pokemon al array
         if (tipo != null && numTipos < NUMERO_TIPOS) {
-            this.tipos[numTipos] = tipo;
+            this.tipos[numTipos-1] = tipo;
             numTipos++;
         }
         return true;
@@ -511,141 +513,188 @@ public class Pokemon implements Comparable, StadisticInterface {
         double modificador = 1.1;
         return (int) (estadistica * modificador);
     }
-        @Override
-        public int bajar (int estadistica){
-            double modificador = 0.9;
-            return (int) (estadistica * modificador);
+
+    @Override
+    public int bajar(int estadistica) {
+        double modificador = 0.9;
+        return (int) (estadistica * modificador);
     }
 
-    public Pokemon manejaEstadisticaSegunNaturaleza(Naturaleza naturaleza){
-        int subir, bajar;
-        switch (naturaleza.getNombre()){
-            case StadisticInterface.ACTIVA :
-                if (StadisticInterface.ACTIVA.equals(naturaleza.getNombre())){
-                    subir = subir(this.velocidadMaximo);
-                    bajar = bajar(this.defensaMaximo);
+    public Pokemon manejaEstadisticaSegunNaturaleza(Naturaleza naturaleza) {
+
+        switch (naturaleza.getNombre()) {
+            case StadisticInterface.ACTIVA:
+                if (StadisticInterface.ACTIVA.equals(naturaleza.getNombre())) {
+                    setVelocidadMaximo(subir(this.velocidadMaximo));
+                    setDefensaMaximo(bajar(this.defensaMaximo));
                 }
                 break;
             case StadisticInterface.AFABLE:
-                if (StadisticInterface.AFABLE.equals(naturaleza.getNombre())){
-                    subir = subir(this.ataqueEspecialMaximo);
-                    bajar = bajar(this.defensaMaximo);
+                if (StadisticInterface.AFABLE.equals(naturaleza.getNombre())) {
+                    setAtaqueEspecialMaximo(subir(this.ataqueEspecialMaximo));
+                    bajar(this.defensaMaximo);
                 }
                 break;
             case StadisticInterface.AGITADA:
-                if (StadisticInterface.AGITADA.equals(naturaleza.getNombre())){
-                    subir = subir(this.defensaMaximo);
-                    bajar = bajar(this.ataqueEspecialMaximo);
+                if (StadisticInterface.AGITADA.equals(naturaleza.getNombre())) {
+                    setDefensaMaximo(subir(this.defensaMaximo));
+                    setAtaqueEspecialMaximo(bajar(this.ataqueEspecialMaximo));
                 }
                 break;
             case StadisticInterface.ALEGRE:
-                if (StadisticInterface.ALEGRE.equals(naturaleza.getNombre())){
-                    subir(this.velocidadMaximo);
-                    bajar(this.ataqueEspecialMaximo);
+                if (StadisticInterface.ALEGRE.equals(naturaleza.getNombre())) {
+                    setVelocidadMaximo(subir(this.velocidadMaximo));
+                    setAtaqueEspecialMaximo(bajar(this.ataqueEspecialMaximo));
                 }
                 break;
             case StadisticInterface.ALOCADA:
-                if (StadisticInterface.ALOCADA.equals(naturaleza.getNombre())){
-                    subir(this.ataqueEspecialMaximo);
-                    bajar(this.defensaEspecialMaximo);
+                if (StadisticInterface.ALOCADA.equals(naturaleza.getNombre())) {
+                    setAtaqueEspecialMaximo(subir(this.ataqueEspecialMaximo));
+                    setDefensaEspecialBase(bajar(this.defensaEspecialMaximo));
                 }
                 break;
             case StadisticInterface.AMABLE:
-                if (StadisticInterface.AMABLE.equals(naturaleza.getNombre())){
-                    subir(this.defensaEspecialMaximo);
-                    bajar(this.defensaMaximo);
+                if (StadisticInterface.AMABLE.equals(naturaleza.getNombre())) {
+                    setDefensaEspecialMaximo(subir(this.defensaEspecialMaximo));
+                    setDefensaMaximo(bajar(this.defensaMaximo));
                 }
                 break;
             case StadisticInterface.AUDAZ:
-                if (StadisticInterface.AUDAZ.equals(naturaleza.getNombre())){
-                    subir(this.ataqueMaximo);
-                    bajar(this.velocidadMaximo);
+                if (StadisticInterface.AUDAZ.equals(naturaleza.getNombre())) {
+                    setAtaqueMaximo(subir(this.ataqueMaximo));
+                    setVelocidadMaximo(bajar(this.velocidadMaximo));
                 }
                 break;
             case StadisticInterface.CAUTA:
-                if (StadisticInterface.CAUTA.equals(naturaleza.getNombre())){
-                    subir(this.defensaEspecialMaximo);
-                    bajar(this.ataqueEspecialMaximo);
+                if (StadisticInterface.CAUTA.equals(naturaleza.getNombre())) {
+                    setDefensaEspecialMaximo(subir(this.defensaEspecialMaximo));
+                    setAtaqueEspecialMaximo(bajar(this.ataqueEspecialMaximo));
                 }
                 break;
             case StadisticInterface.FIRME:
-                if (StadisticInterface.FIRME.equals(naturaleza.getNombre())){
-                    subir(this.ataqueMaximo);
-                    bajar(this.ataqueEspecialMaximo);
+                if (StadisticInterface.FIRME.equals(naturaleza.getNombre())) {
+                    setAtaqueMaximo(subir(this.ataqueMaximo));
+                    setAtaqueEspecialMaximo(bajar(this.ataqueEspecialMaximo));
                 }
                 break;
             case StadisticInterface.FLOJA:
-                if (StadisticInterface.FLOJA.equals(naturaleza.getNombre())){
-                    subir(this.defensaMaximo);
-                    bajar(this.defensaEspecialMaximo);
+                if (StadisticInterface.FLOJA.equals(naturaleza.getNombre())) {
+                    setDefensaMaximo(subir(this.defensaMaximo));
+                    setDefensaEspecialMaximo(bajar(this.defensaEspecialMaximo));
                 }
                 break;
             case StadisticInterface.GROSERA:
-                if (StadisticInterface.GROSERA.equals(naturaleza.getNombre())){
-                    subir(this.defensaEspecialMaximo);
-                    bajar(this.velocidadMaximo);
+                if (StadisticInterface.GROSERA.equals(naturaleza.getNombre())) {
+                    setDefensaEspecialMaximo(subir(this.defensaEspecialMaximo));
+                    setVelocidadMaximo(bajar(this.velocidadMaximo));
                 }
                 break;
             case StadisticInterface.HURAÑA:
-                if (StadisticInterface.HURAÑA.equals(naturaleza.getNombre())){
-                    subir(this.ataqueMaximo);
-                    bajar(this.defensaMaximo);
+                if (StadisticInterface.HURAÑA.equals(naturaleza.getNombre())) {
+                    setAtaqueMaximo(subir(this.ataqueMaximo));
+                    setDefensaMaximo(bajar(this.defensaMaximo));
                 }
                 break;
             case StadisticInterface.INGENUA:
-                if (StadisticInterface.INGENUA.equals(naturaleza.getNombre())){
-                    subir(this.velocidadMaximo);
-                    bajar(this.defensaEspecialMaximo);
+                if (StadisticInterface.INGENUA.equals(naturaleza.getNombre())) {
+                    setVelocidadMaximo(subir(this.velocidadMaximo));
+                    setDefensaEspecialMaximo(bajar(this.defensaEspecialMaximo));
                 }
                 break;
             case StadisticInterface.MANSA:
-                if (StadisticInterface.MANSA.equals(naturaleza.getNombre())){
-                    subir(this.ataqueEspecialMaximo);
-                    bajar(this.velocidadMaximo);
+                if (StadisticInterface.MANSA.equals(naturaleza.getNombre())) {
+                    setAtaqueEspecialMaximo(subir(this.ataqueEspecialMaximo));
+                    setVelocidadMaximo(bajar(this.velocidadMaximo));
                 }
                 break;
             case StadisticInterface.MIEDOSA:
-                if (StadisticInterface.MIEDOSA.equals(naturaleza.getNombre())){
-                    subir(this.velocidadMaximo);
+                if (StadisticInterface.MIEDOSA.equals(naturaleza.getNombre())) {
+                    setVelocidadMaximo(subir(this.velocidadMaximo));
                     bajar(this.ataqueMaximo);
                 }
                 break;
             case StadisticInterface.MODESTA:
-                if (StadisticInterface.MODESTA.equals(naturaleza.getNombre())){
-                    subir(this.ataqueEspecialMaximo);
-                    bajar(this.ataqueMaximo);
+                if (StadisticInterface.MODESTA.equals(naturaleza.getNombre())) {
+                    setAtaqueEspecialMaximo(subir(this.ataqueEspecialMaximo));
+                    setAtaqueMaximo(bajar(this.ataqueMaximo));
                 }
                 break;
             case StadisticInterface.OSADA:
-                if (StadisticInterface.OSADA.equals(naturaleza.getNombre())){
-                    subir(this.defensaMaximo);
-                    bajar(this.ataqueMaximo);
+                if (StadisticInterface.OSADA.equals(naturaleza.getNombre())) {
+                    setDefensaMaximo(subir(this.defensaMaximo));
+                    setAtaqueMaximo(bajar(this.ataqueMaximo));
                 }
                 break;
             case StadisticInterface.PICARA:
-                if (StadisticInterface.PICARA.equals(naturaleza.getNombre())){
-                    subir(this.ataqueMaximo);
-                    bajar(this.defensaEspecialMaximo);
+                if (StadisticInterface.PICARA.equals(naturaleza.getNombre())) {
+                    setAtaqueMaximo(subir(this.ataqueMaximo));
+                    setDefensaEspecialMaximo(bajar(this.defensaEspecialMaximo));
                 }
                 break;
             case StadisticInterface.PLACIDA:
-                if (StadisticInterface.PLACIDA.equals(naturaleza.getNombre())){
-                    subir(this.defensaMaximo);
-                    bajar(this.velocidadMaximo);
+                if (StadisticInterface.PLACIDA.equals(naturaleza.getNombre())) {
+                    setDefensaMaximo(subir(this.defensaMaximo));
+                    setVelocidadMaximo(bajar(this.velocidadMaximo));
                 }
                 break;
             case StadisticInterface.SERENA:
-                if (StadisticInterface.SERENA.equals(naturaleza.getNombre())){
-                    subir(this.defensaEspecialMaximo);
-                    bajar(this.ataqueMaximo);
+                if (StadisticInterface.SERENA.equals(naturaleza.getNombre())) {
+                    setDefensaEspecialMaximo(subir(this.defensaEspecialMaximo));
+                    setAtaqueMaximo(bajar(this.ataqueMaximo));
                 }
                 break;
         }
         return new Pokemon(this.nombre, this.tipos, this.numPokedex, this.descripcion, this.movimientos, this.generacion, this.imagen
-        , this.nivel, this. psBase, this.ataqueBase, this.defensaBase, this.ataqueEspecialBase, this.defensaEspecialBase, this.velocidadBase,
-        this.psMaximo, this.ataqueMaximo, this.defensaMaximo, this.ataqueEspecialMaximo, this.defensaEspecialMaximo, this.velocidadMaximo,
+                , this.nivel, this.psBase, this.ataqueBase, this.defensaBase, this.ataqueEspecialBase, this.defensaEspecialBase, this.velocidadBase,
+                this.psMaximo, this.ataqueMaximo, this.defensaMaximo, this.ataqueEspecialMaximo, this.defensaEspecialMaximo, this.velocidadMaximo,
                 this.iv, this.shiny, this.habilidad, this.naturaleza, this.listaTipos, this.listaMovimientos);
     }
+
+    public int validaCamposClaves(){
+
+        return 0;
+    }
+
+    @NotNull
+    @Override
+    public Iterator<Pokemon> iterator() {
+        return new PokemonIterator();
+    }
+
+    private class PokemonIterator implements Iterator<Pokemon> {
+        //Atributo que lleva el control del índice actual
+        private int indice;
+
+        //constructor que inicializa el índice a 0
+        public PokemonIterator() {
+            indice = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            // devuelve true si el índice es menor que el tamaño de la lista de movimientos
+            return indice < listaMovimientos.size();
+        }
+
+        @Override
+        public Pokemon next() {
+            //Si no hay más elementos, lanza una excepción
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            //Obtiene el movimiento actual de la lista
+            Movimiento movimiento = listaMovimientos.get(indice);
+            //Obtiene el tipo actual de la lista
+            Tipo tipo = listaTipos.get(indice);
+            //Crea un nuevo pokemon con los mismos atributos que el actual, excepto el movimiento y el tipo
+            Pokemon pokemon = new Pokemon(nombre, new Tipo[]{tipo}, numPokedex, descripcion, new Movimiento[]{movimiento},
+                    generacion, imagen, nivel, psBase, ataqueBase, defensaBase, ataqueEspecialBase, defensaEspecialBase,
+                    velocidadBase, psMaximo, ataqueMaximo, defensaMaximo, ataqueEspecialMaximo, defensaEspecialMaximo,
+                    velocidadMaximo, iv, shiny, habilidad, naturaleza, listaTipos, listaMovimientos);
+            //Incrementa el índice
+            indice++;
+            //Devuelve el nuevo pokemon
+            return pokemon;
+        }
+    }
 }
-
-
