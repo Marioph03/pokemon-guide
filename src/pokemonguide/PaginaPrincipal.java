@@ -1,7 +1,9 @@
 package pokemonguide;
 
 import logger.MyLogger;
+import org.w3c.dom.Document;
 import validacion.ValidacionCampoClave;
+import xml.XmlConverter;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class PaginaPrincipal {
         ArrayList<Pokemon> pokemonsList = new ArrayList<>();
         ArrayList<Tipo> tiposList = new ArrayList<>();
         ArrayList<Movimiento> movimientosList = new ArrayList<>();
+        XmlConverter xml = new XmlConverter();
 
         Naturaleza naturaleza = new Naturaleza("Huraña", "sube ataque y baja defensa");
         Naturaleza naturaleza2 = new Naturaleza("Activa", "sube velocidad y baja defensa");
@@ -67,6 +70,13 @@ public class PaginaPrincipal {
         //System.out.println(brock.eliminaPokemon(geodude, 0));
         //System.out.println(brock);
         //System.out.println(geodude.manejaEstadisticaSegunNaturaleza(naturaleza));
-        System.out.println(ValidacionCampoClave.validaCampoClave(geodude.getNumPokedex(), "([0-9]|[0-9][0-9])|([1][0-4][0-9])|(150|151)"));
+        //System.out.println(ValidacionCampoClave.validaCampoClave(geodude.getNumPokedex(), "([0-9]|[0-9][0-9])|([1][0-4][0-9])|(150|151)"));
+        xml.inicializarDocumento();
+        Document doc = xml.generateXml(geodude);
+
+        String xmlString = xml.stringConverter(doc);
+        //System.out.println("XML generado:\n" + xmlString);
+
+        //xml.escribirArchivo(doc, "pokemon.xml");
     }
 }
