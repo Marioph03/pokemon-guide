@@ -94,7 +94,7 @@ public class Movimiento implements Comparable{
 
     @Override
     public String toString() {
-        return "Movimiento{" +
+        return this.getNombre() + "{" +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", generacion=" + generacion +

@@ -38,7 +38,7 @@ public class PaginaPrincipal {
         Habilidad habilidad = new Habilidad("Mar llamas", "Es una habilidad que suelen tener los pokemon de tipo fuego, " +
                 "mientras menos ps tenga el pokemon mas le aumenta el ataque", tipo);
 
-        LiderGimnasio brock = new LiderGimnasio("Brock", pokemons, generacion, pokemonsList,"Es un lider de gimnasio tipo Roca" +
+        Entrenador brock = new LiderGimnasio("Brock", pokemons, generacion, pokemonsList,"Es un lider de gimnasio tipo Roca" +
                 " de la primera generacion", tipo, 14, imagen);
 
         Pokemon charmander = new Pokemon("Charmander", tipos, 4, "Prefiere las cosas calientes. Dicen que cuando " +
@@ -71,10 +71,10 @@ public class PaginaPrincipal {
         //System.out.println(brock);
         //System.out.println(geodude.manejaEstadisticaSegunNaturaleza(naturaleza));
         //System.out.println(ValidacionCampoClave.validaCampoClave(geodude.getNumPokedex(), "([0-9]|[0-9][0-9])|([1][0-4][0-9])|(150|151)"));
-        xml.inicializarDocumento();
-        Document doc = xml.generateXml(geodude);
+        //xml.inicializarDocumento();
+        //Document doc = xml.generateXml(geodude);
 
-        String xmlString = xml.stringConverter(doc);
+        //String xmlString = xml.stringConverter(doc);
         //System.out.println("XML generado:\n" + xmlString);
 
         //xml.escribirArchivo(doc, "pokemon.xml");

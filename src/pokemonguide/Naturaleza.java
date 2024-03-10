@@ -37,7 +37,7 @@ public class Naturaleza implements StadisticInterface{
 
     @Override
     public String toString() {
-        return "Naturaleza{" +
+        return this.getNombre() + "{" +
                 "nombre='" + nombre + '\'' +
                 ", efecto='" + efecto + '\'' +
                 '}';

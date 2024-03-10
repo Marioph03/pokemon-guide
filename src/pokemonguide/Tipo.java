@@ -38,7 +38,7 @@ public class Tipo implements Comparable {
 
     @Override
     public String toString() {
-        return "Tipo{" +
+        return this.getNombre() + "{" +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 '}';

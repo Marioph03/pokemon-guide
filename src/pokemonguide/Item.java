@@ -75,18 +75,6 @@ public class Item {
         return null;
     }
 
-    /**
-     * Muestra una lista de todos los item que
-     * llevo añadidos a la guia
-     *
-     * @return: Devueleve una lista de todos los
-     * item añadidos a la guia
-     */
-    public Item[] muestraItem(){
-
-        return null;
-    }
-
     @Override
     public String toString() {
         return "Item{" +

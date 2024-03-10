@@ -105,18 +105,6 @@ public final class LiderGimnasio extends Entrenador {
         return null;
     }
 
-    /**
-     * Metodo que se utiliza para mostrar la Lista de
-     * Lideres de Gimnasio que he añadido a la guia
-     *
-     * @return: Devuelve una lista de los Lideres de Gimnasio
-     * que he añadido a la guia
-     */
-    public LiderGimnasio[] muestraLider(){
-
-        return null;
-    }
-
     @Override
     public boolean creaPokemon(Pokemon pokemon) {
         //Si el numero de pokemon es menor a 6
@@ -156,7 +144,7 @@ public final class LiderGimnasio extends Entrenador {
 
     @Override
     public String toString() {
-        return "LiderGimnasio{" +
+        return this.getNombre() + "{" +
                 "descripcion='" + descripcion + '\'' +
                 ", tipo=" + tipo +
                 ", nivel=" + nivel +

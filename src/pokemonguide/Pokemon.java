@@ -520,6 +520,17 @@ public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon
         return (int) (estadistica * modificador);
     }
 
+    /**
+     * Este metodo sirve para que cuando un pokemon tenga
+     * una naturaleza en concreto, se le aplique el efecto
+     * por ejemplo la naturaleza Huraña sube ataque y baja defensa
+     * @param naturaleza: Segun la naturaleza que se le pase
+     *                  tendra un efecto u otro sobre las estadisticas
+     *                  maximas del pokemon, (este metodo aplica los
+     *                  cambios de las estadisticas del pokemon sobre
+     *                  el constructor)
+     * @return: Devuelve el pokemon con sus estadisticas modificadas
+     */
     public Pokemon manejaEstadisticaSegunNaturaleza(Naturaleza naturaleza) {
 
         switch (naturaleza.getNombre()) {
@@ -650,11 +661,6 @@ public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon
                 this.iv, this.shiny, this.habilidad, this.naturaleza, this.listaTipos, this.listaMovimientos);
     }
 
-    public int validaCamposClaves(){
-
-        return 0;
-    }
-
     @NotNull
     @Override
     public Iterator<Pokemon> iterator() {
@@ -670,12 +676,24 @@ public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon
             indice = 0;
         }
 
+        /**
+         * Metodo de la interfaz itrator que sirve para
+         * comprobar si la coleccion esta vacia
+         * @return: Devuelve true si no esta vacia y false
+         * si esta vacia
+         */
         @Override
         public boolean hasNext() {
             // devuelve true si el índice es menor que el tamaño de la lista de movimientos
             return indice < listaMovimientos.size();
         }
 
+        /**
+         * Metodo que sirve para iterar sobre los
+         * elementos de una coleccion
+         * @return: Devuelve los elementos sobre
+         * los que va iterando
+         */
         @Override
         public Pokemon next() {
             //Si no hay más elementos, lanza una excepción

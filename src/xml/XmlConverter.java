@@ -14,6 +14,10 @@ import java.io.StringWriter;
 import java.lang.reflect.Field;
 
 public class XmlConverter {
+    /**
+     * Metodo que inicializa un objeto de la clase Document
+     * @return: devuelve un objeto de la clase Document
+     */
     public Document inicializarDocumento() {
         Document documento;
         // Creamos los objetos de creación de Documentos XML
@@ -28,6 +32,14 @@ public class XmlConverter {
         return documento;
     }
 
+    /**
+     * Metodo que imprime por pantalla el contenido de
+     * un documeto xml
+     * @param doc: Documento que se va a imprimir por
+     *           pantalla
+     * @return: Devuelve el contenido del documento y
+     * lo imprime por pantalla
+     */
     public String stringConverter(Document doc) {
         // Creamos el objeto transformador
         TransformerFactory tf = TransformerFactory.newInstance();
@@ -55,6 +67,15 @@ public class XmlConverter {
         return output;
     }
 
+    /**
+     * Metodo que sirve para generar un documento
+     * xml y convierte un documento a xml
+     * @param doc: Documento que se va a transformar
+     *           a xml
+     * @param nombreArchivo: nombre que se le va a poner
+     *                     al xml
+     * @return: Devuelve true si se ha creado con exito
+     */
     public boolean escribirArchivo(Document doc, String nombreArchivo){
         // Creamos el objeto transformador
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -80,6 +101,14 @@ public class XmlConverter {
         return true;
     }
 
+    /**
+     * Devuelve un documento de la clase del objetoq que
+     * se le ha pasado por parametro
+     * @param obj: Objeto del cual se va a generar el
+     *           documento xml
+     * @return: Devuelve el documento creado con los
+     * elementos indicados por mi dentro del metodo
+     */
     public Document generateXml(Object obj){
         Document documento = this.inicializarDocumento();
 
