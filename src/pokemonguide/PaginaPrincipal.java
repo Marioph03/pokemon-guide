@@ -1,8 +1,7 @@
 package pokemonguide;
 
+import ficheros.OrganizaFichero;
 import logger.MyLogger;
-import org.w3c.dom.Document;
-import validacion.ValidacionCampoClave;
 import xml.XmlConverter;
 
 import java.awt.*;
@@ -65,6 +64,8 @@ public class PaginaPrincipal {
         //System.out.println(brock.creaPokemon(charmander));
         //System.out.println(brock.creaPokemon(geodude));
         //System.out.println(brock.creaPokemon(geodude2));
+        //System.out.println(geodude.buscaPokemonPorTipo(tipo));
+        //System.out.println(geodude);
         //System.out.println(brock);
         //System.out.println(brock.buscaLiderPorGeneracion(generacion));
         //System.out.println(brock.eliminaPokemon(geodude, 0));
@@ -78,5 +79,9 @@ public class PaginaPrincipal {
         //System.out.println("XML generado:\n" + xmlString);
 
         //xml.escribirArchivo(doc, "pokemon.xml");
+
+        OrganizaFichero.guardaInformacion("geodude.txt","pokemon", geodude.toString());
+        OrganizaFichero.guardaInformacion("charmander.txt","pokemon", charmander.toString());
+        OrganizaFichero.guardaInformacion("Brock.txt","Lider de Gimnasio", brock.toString());
     }
 }

@@ -3,6 +3,7 @@ package pokemonguide;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ import java.util.NoSuchElementException;
  * @author Mario
  * @version 1.0
  */
-public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon> {
+public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon>, Serializable {
     private String nombre;
     private Tipo[] tipos;
     private ArrayList<Tipo> listaTipos;
@@ -396,7 +397,7 @@ public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon
         //Si el numero de pokemon es menor a 2
         //se añade un pokemon al array
         if (tipo != null && numTipos < NUMERO_TIPOS) {
-            this.tipos[numTipos-1] = tipo;
+            this.tipos[numTipos] = tipo;
             numTipos++;
         }
         return true;
@@ -479,32 +480,32 @@ public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon
     @Override
     public String toString() {
         return "Pokemon{" +
-                "nombre='" + nombre + '\'' +
-                ", tipos=" + Arrays.toString(tipos) +
-                ", numPokedex=" + numPokedex +
-                ", numTipos=" + numTipos +
-                ", numMovimientos=" + numMovimientos +
-                ", descripcion='" + descripcion + '\'' +
-                ", movimientos=" + Arrays.toString(movimientos) +
-                ", generacion=" + generacion +
-                ", imagen=" + imagen +
-                ", nivel=" + nivel +
-                ", psBase=" + psBase +
-                ", ataqueBase=" + ataqueBase +
-                ", defensaBase=" + defensaBase +
-                ", ataqueEspecialBase=" + ataqueEspecialBase +
-                ", defensaEspecialBase=" + defensaEspecialBase +
-                ", velocidadBase=" + velocidadBase +
-                ", psMaximo=" + psMaximo +
-                ", ataqueMaximo=" + ataqueMaximo +
-                ", defensaMaximo=" + defensaMaximo +
-                ", ataqueEspecialMaximo=" + ataqueEspecialMaximo +
-                ", defensaEspecialMaximo=" + defensaEspecialMaximo +
-                ", velocidadMaximo=" + velocidadMaximo +
-                ", iv=" + iv +
-                ", shiny=" + shiny +
-                ", habilidad=" + habilidad +
-                ", naturaleza=" + naturaleza +
+                "nombre='" + nombre + "\n" +
+                ", tipos=" + Arrays.toString(tipos) + "\n"  +
+                ", numPokedex=" + numPokedex + "\n" +
+                ", numTipos=" + numTipos + "\n" +
+                ", numMovimientos=" + numMovimientos + "\n"  +
+                ", descripcion='" + descripcion + "\n"  +
+                ", movimientos=" + Arrays.toString(movimientos) + "\n" +
+                ", generacion=" + generacion + "\n" +
+                ", imagen=" + imagen + "\n" +
+                ", nivel=" + nivel + "\n" +
+                ", psBase=" + psBase + "\n" +
+                ", ataqueBase=" + ataqueBase + "\n" +
+                ", defensaBase=" + defensaBase + "\n" +
+                ", ataqueEspecialBase=" + ataqueEspecialBase + "\n"  +
+                ", defensaEspecialBase=" + defensaEspecialBase + "\n" +
+                ", velocidadBase=" + velocidadBase + "\n" +
+                ", psMaximo=" + psMaximo + "\n" +
+                ", ataqueMaximo=" + ataqueMaximo + "\n" +
+                ", defensaMaximo=" + defensaMaximo + "\n" +
+                ", ataqueEspecialMaximo=" + ataqueEspecialMaximo + "\n" +
+                ", defensaEspecialMaximo=" + defensaEspecialMaximo + "\n" +
+                ", velocidadMaximo=" + velocidadMaximo + "\n" +
+                ", iv=" + iv + "\n" +
+                ", shiny=" + shiny + "\n" +
+                ", habilidad=" + habilidad + "\n" +
+                ", naturaleza=" + naturaleza + "\n" +
                 '}';
     }
 
@@ -543,7 +544,7 @@ public class Pokemon implements Comparable, StadisticInterface, Iterable<Pokemon
             case StadisticInterface.AFABLE:
                 if (StadisticInterface.AFABLE.equals(naturaleza.getNombre())) {
                     setAtaqueEspecialMaximo(subir(this.ataqueEspecialMaximo));
-                    bajar(this.defensaMaximo);
+                    setDefensaMaximo(bajar(this.defensaMaximo));
                 }
                 break;
             case StadisticInterface.AGITADA:
